@@ -15,10 +15,12 @@ const actvieConversation = ref({ id: 'GP1' })
     <Head title="Index" />
     <div class="overflow-hidden flex items-center justify-center">
         <div class="flex flex-row overflow-x-hidden w-full md:w-5/6">
-            <SideBar :conversations=conversations @change-conversation="(param) => actvieConversation.id = param "/>
+            <SideBar :conversations=conversations @change-conversation="(param) => actvieConversation.id = param" />
             <ConversationBody :key="actvieConversation.id" />
         </div>
     </div>
 </template>
+
+
 
 

@@ -3,13 +3,14 @@ import { Head } from '@inertiajs/vue3';
 import axios from 'axios';
 import { onBeforeMount, onMounted, ref } from 'vue';
 import moment from 'moment';
-import { getCurrentInstance} from "vue";
+import { getCurrentInstance } from "vue";
 
 const conversation = ref([])
 const participants = ref([])
 const messages = ref([])
 const authUser = ref([])
 const user = ''
+const newMessage = ref([])
 
 onMounted(() => {
     axios.get(route('conversation.show', getCurrentInstance().vnode.key)).then(response => {
@@ -19,6 +20,11 @@ onMounted(() => {
         authUser.value = response.data.authUser;
     });
 })
+function sendMessage() {
+    const message = { user_id: 1, conversation_id: this.conversation.id, message: newMessage.value }
+    axios.post("/api/v1/conversation/" + this.conversation.channel_id + "/message", message)
+        .then(response => this.refresh++);
+}
 </script>
 
 <template>
@@ -65,7 +71,8 @@ onMounted(() => {
                 <div class="flex flex-col h-full">
                     <div class="grid grid-cols-12 gap-y-2">
                         <div v-for="message in messages" class="col-start-1 col-end-13 p-3 rounded-lg">
-                            <div v-if="message.user_id.id == authUser" class="flex items-center justify-start flex-row-reverse">
+                            <div v-if="message.user_id.id == authUser"
+                                class="flex items-center justify-start flex-row-reverse">
                                 <div
                                     class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
                                     S
@@ -95,6 +102,7 @@ onMounted(() => {
                     </div>
                 </div>
             </div>
+
             <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
                 <div>
                     <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
@@ -108,7 +116,7 @@ onMounted(() => {
                 </div>
                 <div class="flex-grow ml-4">
                     <div class="relative w-full">
-                        <input type="text"
+                        <textarea name="message" v-model="newMessage"
                             class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
                         <button
                             class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
@@ -122,7 +130,7 @@ onMounted(() => {
                     </div>
                 </div>
                 <div class="ml-4">
-                    <button
+                    <button @click="sendMessage()"
                         class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
                         <span>Send</span>
                         <span class="ml-2">
