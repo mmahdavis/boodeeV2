@@ -1,0 +1,26 @@
+INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `is_active`, `is_reported`, `is_blocked`, `prederences`, `remember_token`, `email_verified_at`, `created_at`, `updated_at`) VALUES
+(1, 'mmahdavis', NULL, 'test@gmail.com', '$2y$10$mx8J7YFB1woeVWcvfPhEFOcUgEmtDxnm.5HrGe8ngcJSfs17MjRYu', 1, 0, 0, NULL, NULL, NULL, '2023-04-09 04:02:53', '2023-04-09 04:02:53'),
+(2, 'member2', NULL, 'test2@gmail.com', '$2y$10$c9qx/4eXT7xGQ0pU/vMcYur6a6o2WgiyUKE9xN4Cf9E5f7/tFFuFe', 1, 0, 0, NULL, NULL, NULL, '2023-04-09 04:03:17', '2023-04-09 04:03:17'),
+(3, 'member3', NULL, 'test3@gmail.com', '$2y$10$FhrmHgpbBG4GYxy.gqr/Z.NRXGU8Cn0WhXVhIyfVAbvN2A0tuc2Pa', 1, 0, 0, NULL, NULL, NULL, '2023-04-09 04:03:42', '2023-04-09 04:03:42');
+
+INSERT INTO `conversations` (`id`, `title`, `user_id`, `channel_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Group 1', 1, 'GP1', '2023-04-09 07:26:09', NULL, NULL),
+(2, 'Group 2', 1, 'GP2', '2023-04-09 07:26:09', NULL, NULL);
+
+INSERT INTO `participants` (`id`, `conversation_id`, `user_id`, `type`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Supervisor', '2023-04-09 08:50:02', NULL),
+(2, 1, 2, 'member', '2023-04-09 08:50:02', NULL),
+(3, 2, 1, 'Supervisor', '2023-04-09 08:50:02', NULL),
+(4, 2, 3, 'Supervisor', '2023-04-09 08:50:02', NULL);
+
+INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `parent_id`, `message_type`, `message`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, 'text', 'Test Message For Tester dsadsadIn Test Site', '2023-04-09 07:34:25', NULL),
+(3, 1, 1, NULL, 'text', 'Test Message For Testerdsadsa In Test Site', '2023-04-09 07:34:40', NULL),
+(4, 2, 2, NULL, 'text', 'Test Message For Testdsadsadsader In Test Site', '2023-04-09 07:35:25', NULL),
+(5, 2, 3, NULL, 'text', 'Test Mesdsadsadsasage For Tester In Test Site', '2023-04-09 07:35:40', NULL),
+(6, 2, 1, NULL, 'text', 'Test Message For Testdsadsadsaer In Test Site', '2023-04-09 07:36:15', NULL),
+(7, 2, 1, NULL, 'text', 'Test Msadsadsadsaessage For Tester In Test Site', '2023-04-09 07:36:25', NULL),
+(8, 1, 2, NULL, 'text', 'Test Messagasdasdsade For Tester In Test Site', '2023-04-09 07:36:35', NULL),
+(9, 1, 3, NULL, 'text', 'Test Message For Tesadsadasdster In Test Site', '2023-04-09 07:36:45', NULL),
+(10, 1, 1, NULL, 'text', 'Test Message For Tester dsadsadsadsaIn Test Site', '2023-04-09 07:36:55', NULL),
+(11, 1, 1, NULL, 'text', 'Test Message Foasdsadasdr Tester In Test Site', '2023-04-09 07:37:05', NULL);
