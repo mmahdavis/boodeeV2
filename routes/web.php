@@ -23,6 +23,12 @@ Route::get('/', function () {
     ]);
 })->middleware('auth');
 
+Route::get('/conversation', function () {
+    return Inertia::render('Welcome', [
+        'conversations' => Participant::with('Conversation')->where('user_id', Auth()->User()->id)->get()
+    ]);
+})->middleware('auth')->name('conversation');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

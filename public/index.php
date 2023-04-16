@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewMessage;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 

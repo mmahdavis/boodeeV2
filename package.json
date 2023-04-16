@@ -18,7 +18,9 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "laravel-echo": "^1.15.0",
         "moment": "^2.29.4",
+        "pusher-js": "^8.0.2",
         "vue-axios": "^3.5.2",
         "vue3-nl2br": "^0.1.5"
     }
